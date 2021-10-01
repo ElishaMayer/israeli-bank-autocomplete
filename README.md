@@ -63,6 +63,7 @@ banks = [
   { bankCode: 13, bankName: '13001-בנק אגוד לישראל בע"מ' },
   { bankCode: 14, bankName: 'בנק אוצר החייל בע"מ' },
   { bankCode: 17, bankName: 'בנק מרכנתיל דיסקונט בע"מ' },
+  { "bankCode": 18, "bankName": "הבנק הדיגיטלי הראשון בע\"מ" },
   { bankCode: 20, bankName: 'בנק מזרחי טפחות בע"מ' },
   { bankCode: 22, bankName: 'Citibank N.A' },
   { bankCode: 23, bankName: "אייצ' אס בי סי בנק" },
