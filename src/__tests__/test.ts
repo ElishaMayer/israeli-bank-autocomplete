@@ -24,7 +24,7 @@ test("test with bankCode option", () => {
   test("test with inputType=BRANCH_CODE option", () => {
     expect(
       getAutocompleteSuggestions("620", { inputType: "BRANCH_CODE"}).length
-    ).toStrictEqual(2);
+    ).toStrictEqual(3);
   });
 
   test("test with inputType=BRANCH_CODE && bankCode option", () => {
