@@ -105,6 +105,6 @@ This function will fetch the data directly from Israel Bank. Run this if you wan
 await fetchNewDataFromIsraelBank();
 ```
 
-> Running this will fetch data from `https://www.boi.org.il`. Make sure to read
+> Running this will fetch data from [https://www.boi.org.il](https://www.boi.org.il). Make sure to read
 > their [terms](https://www.boi.org.il/he/Pages/disclaimer.aspx). This package is not responsible for any action done by
 > calling this function.
