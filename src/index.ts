@@ -1,5 +1,5 @@
-import database from "./database";
-import { AutocompleteOptions, Branch } from "./types";
+import dataSource from "./dataSource";
+import {AutocompleteOptions, Branch} from "./types";
 
 /**
  * Get Branch Suggestions
@@ -7,46 +7,51 @@ import { AutocompleteOptions, Branch } from "./types";
  * @param {AutocompleteOptions} options autocomplete options
  */
 export const getAutocompleteSuggestions = (
-  input: string,
-  options?: AutocompleteOptions
+    input: string,
+    options?: AutocompleteOptions
 ) => {
-  let branches: Branch[] = [];
-  if (options && options.bankCode) {
-    branches = database.getAllBankBraches(options.bankCode);
-  } else {
-    branches = database.getAllBrachs();
-  }
-  if (options && options.inputType === "BRANCH_NAME")
-    return branches.filter((branch: Branch) =>
-      branch.branchName.includes(input)
-    );
-  else if (options && options.inputType === "BRANCH_CODE")
-    return branches.filter((branch: Branch) =>
-      branch.branchCode.includes(input)
-    );
-  else if (options && options.inputType === "BOTH")
-    return branches.filter(
-      (branch: Branch) =>
-        branch.branchCode.includes(input) || branch.branchName.includes(input)
-    );
-  else
-    return branches.filter(
-      (branch: Branch) =>
-        branch.branchCode.includes(input) || branch.branchName.includes(input)
-    );
+    let branches: Branch[];
+    if (options && options.bankCode) {
+        branches = dataSource.getAllBankBranches(options.bankCode);
+    } else {
+        branches = dataSource.getAllBranches();
+    }
+    if (options && options.inputType === "BRANCH_NAME")
+        return branches.filter((branch: Branch) =>
+            branch.branchName.includes(input)
+        );
+    else if (options && options.inputType === "BRANCH_CODE")
+        return branches.filter((branch: Branch) =>
+            branch.branchCode.includes(input)
+        );
+    else if (options && options.inputType === "BOTH")
+        return branches.filter(
+            (branch: Branch) =>
+                branch.branchCode.includes(input) || branch.branchName.includes(input)
+        );
+    else
+        return branches.filter(
+            (branch: Branch) =>
+                branch.branchCode.includes(input) || branch.branchName.includes(input)
+        );
 };
 
 /**
- * Get all branchs
- * @param {number} bankCode bank number ( if the branches need to be from a spesific bank )
+ * Get all branches
+ * @param {number} bankCode bank number ( if the branches need to be from a specific bank )
  */
 export const getAllBranches = (bankCode?: number) => {
-  if (bankCode) return database.getAllBankBraches(bankCode);
-  else return database.getAllBrachs();
+    if (bankCode) return dataSource.getAllBankBranches(bankCode);
+    else return dataSource.getAllBranches();
 };
 
 
 /**
  * Get all banks
  */
-export const getAllBanks = () => database.getAllBanks();
+export const getAllBanks = () => dataSource.getAllBanks();
+
+/**
+ * Update Israel Bank data
+ */
+export const fetchNewDataFromIsraelBank = () => dataSource.fetchNewDataFromIsraelBank();
