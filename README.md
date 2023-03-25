@@ -112,7 +112,7 @@ This function will fetch the data directly from Israel Bank. Run this if you wan
 await fetchNewDataFromIsraelBank();
 ```
 
-> This function would only be called from NodeJS environments. You can't run this from your browser.
+> This function can only be called from NodeJS environments. You can't run this from your browser.
 
 > Running this will fetch data from [https://www.boi.org.il](https://www.boi.org.il). Make sure to read
 > their [terms](https://www.boi.org.il/%D7%AA%D7%A0%D7%90%D7%99-%D7%A9%D7%99%D7%9E%D7%95%D7%A9-%D7%91%D7%90%D7%AA%D7%A8/). This package is not responsible for any action done by
