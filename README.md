@@ -11,7 +11,11 @@ npm i israeli-bank-autocomplete
 ## Importing
 
 ```javascript
-const {getAutocompleteSuggestions, getAllBanks, getAllBranches} = require("israeli-bank-autocomplete");
+const {
+  getAutocompleteSuggestions,
+  getAllBanks,
+  getAllBranches,
+} = require("israeli-bank-autocomplete");
 ```
 
 ## Get autocomplete suggestions
@@ -19,7 +23,7 @@ const {getAutocompleteSuggestions, getAllBanks, getAllBranches} = require("israe
 To get bank branches based on a name or a branch code
 
 ```javascript
-let suggestions = getAutocompleteSuggestions("חדר", {bankCode: 12});
+let suggestions = getAutocompleteSuggestions("חדר", { bankCode: 12 });
 /*
 suggestions = [
   {
@@ -48,14 +52,17 @@ suggestions = [
 */
 ```
 
-The function ```getAutocompleteSuggestions``` takes two parameters | Argument Name | Description | Format | |
-------------- | ------------- | ----------| | input | the users input | String| | options | options |
-AutocompleteOptions|
+The function `getAutocompleteSuggestions` takes two parameters
+
+| Argument Name | Description     | Format              |
+| ------------- | --------------- | ------------------- |
+| input         | the users input | String              |
+| options       | options         | AutocompleteOptions |
 
 ## AutocompleteOptions
 
 | Argument Name | Description                                             | Format                           |
-|---------------|---------------------------------------------------------|----------------------------------|
+| ------------- | ------------------------------------------------------- | -------------------------------- |
 | bankCode      | get suggestions only for the given bank                 | Number                           |
 | inputType     | get the suggestions only based on branch name/code/both | BRANCH_CODE / BRANCH_NAME / BOTH |
 
@@ -95,7 +102,7 @@ banks = [
 
 ## Get all branches
 
-To all the branches use ```getAllBranches```
+To all the branches use `getAllBranches`
 
 ## Update Data From Israel Bank
 
@@ -106,6 +113,7 @@ await fetchNewDataFromIsraelBank();
 ```
 
 > This function would only be called from NodeJS environments. You can't run this from your browser.
+
 > Running this will fetch data from [https://www.boi.org.il](https://www.boi.org.il). Make sure to read
 > their [terms](https://www.boi.org.il/%D7%AA%D7%A0%D7%90%D7%99-%D7%A9%D7%99%D7%9E%D7%95%D7%A9-%D7%91%D7%90%D7%AA%D7%A8/). This package is not responsible for any action done by
 > calling this function.
