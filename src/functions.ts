@@ -5,7 +5,7 @@ import iconv from "iconv-lite";
 
 
 const DATABASE_URL =
-    "https://www.boi.org.il/he/BankingSupervision/BanksAndBranchLocations/Lists/BoiBankBranchesDocs/snifim_he.csv";
+    "https://www.boi.org.il/boi_files/Pikuah/snifim_he.csv";
 
 /**
  * Fetch CSV with branches details from Israel Bank
