@@ -24,6 +24,9 @@ class BankDataSource {
      * Fetch new data from Israel Bank
      */
     async fetchNewDataFromIsraelBank() {
+        if (typeof window !== "undefined") {
+            throw new Error("fetchNewDataFromIsraelBank function is not available in the browser");
+        }
         const csv = await fetchCSVFromIsraelBank();
         const {banks, branches} = await convertBranchesDataFromIsraelBankCSV(csv);
         this.banks = banks;
