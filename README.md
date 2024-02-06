@@ -43,7 +43,7 @@ const bankDataSource = new BankDataSource();
 await bankDataSource.fetchNewDataFromDataGov('<resourceId>', 1600);
 ```
 
-When calling `fetchNewDataFromDataGov`. Make sure that you know the limits of calling data.gov.il.
+When calling `fetchNewDataFromDataGov`, make sure that you know the limits of calling data.gov.il.
 
 Both function `fetchNewDataFromDataGovIntoFile` and `fetchNewDataFromDataGov` need to get the `resourceId` and a `limit`. The supported resourceId is [`2202bada-4baf-45f5-aa61-8c5bad9646d3`](https://data.gov.il/dataset/branches/resource/2202bada-4baf-45f5-aa61-8c5bad9646d3), and currently a limit of 1600 will return all the results. If you pick a too low limit, you will get a warning.
 
