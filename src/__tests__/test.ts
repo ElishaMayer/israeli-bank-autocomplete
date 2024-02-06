@@ -7,9 +7,19 @@ test("test with no options", () => {
     expect(bankDataSource.getAutocompleteSuggestions("1")[1].branchCode).toStrictEqual(1);
 });
 
+test("test name search with no options", () => {
+    expect(bankDataSource.getAutocompleteSuggestions("פנימי")[0].branchCode).toStrictEqual(2);
+});
+
 test("test with bankCode option", () => {
     expect(
         bankDataSource.getAutocompleteSuggestions("1", { bankCode: 18 })[0].branchCode
+    ).toStrictEqual(1);
+});
+
+test("test search text with bankCode option", () => {
+    expect(
+        bankDataSource.getAutocompleteSuggestions("תאגידים", { bankCode: 18 })[0].branchCode
     ).toStrictEqual(1);
 });
 
