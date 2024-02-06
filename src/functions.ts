@@ -1,58 +1,57 @@
 import { Bank, Branch } from "./types";
 
-const DATABASE_URL = "https://www.boi.org.il/boi_files/Pikuah/snifim_he.csv";
+const DATA_GOV_BASE_URL = 'https://data.gov.il/api/3/action/datastore_search';
 
 /**
  * Fetch CSV with branches details from Israel Bank
  */
-export async function fetchCSVFromIsraelBank(): Promise<string[][]> {
-  const Parser = await import("papaparse");
-  const fetch: any = await import("node-fetch");
-  //Fetch Israel bank branches CSV file
-  const result = await fetch(DATABASE_URL);
-  const buffer = await result.buffer();
-  const iconv = await import("iconv-lite");
-  const output = iconv.decode(buffer, "ISO-8859-8");
-  // @ts-ignore
-  return Parser.parse(output).data;
+export async function fetchFromDataGov(resourceId: string, limit: number): Promise<any> {
+  const axios: any = await import("axios");
+  const response = await axios.get(`${DATA_GOV_BASE_URL}?resource_id=${resourceId}&limit=${limit}`);
+  return response.data;
 }
 
 /**
  * Convert Israel's Bank CSV to JSON data
  * @param csv The CSV
  */
-export async function convertBranchesDataFromIsraelBankCSV(
-  csv: string[][]
+export async function convertBranchesDataFromGovData(
+  data: any
 ): Promise<{ branches: Branch[]; banks: Bank[] }> {
-  //convert the csv rows to js object with the `headers` as field keys
-  let headers = [
-    "bankCode",
-    "bankName",
-    "branchCode",
-    "branchName",
-    "branchAddress",
-    "city",
-    "zip",
-    "postCode",
-    "phone",
-    "fax",
-    "freePhone",
-    "accessForDisabled",
-    "closedDay",
-    "type",
-    "openDate",
-    "closingDate",
-    "mergeBank",
-    "mergeBranch",
-    "xCoordinate",
-    "yCoordinate",
-  ];
-  let branches = csv
-    .slice(1)
-    .map((row: any) => {
+
+  const total = data.result.total;
+  const limit = data.result.limit;
+
+  if(total > limit) {
+    console.warn(`The limit ${limit} is too low for the total ${total}`);
+  }
+
+  let keysMap = Object.entries({
+    "bankCode": "Bank_Code",
+    "bankName": "Bank_Name",
+    "branchCode": "Branch_Code",
+    "branchName": "Branch_Name",
+    "branchAddress": "Branch_Address",
+    "city": "City",
+    "zip": "Zip_Code",
+    "phone": "Telephone",
+    "fax": "Fax",
+    "freePhone": "Free_Tel",
+    "accessForDisabled": "Handicap_Access",
+    "closedDay": "day_closed",
+    "type": "Branch_Type",
+    "openDate": "Open_Date",
+    "closingDate": "Close_Date",
+    "mergeBank": "Merge_Bank",
+    "mergeBranch": "Merge_Branch",
+    "xCoordinate": "X_Coordinate",
+    "yCoordinate": "Y_Coordinate",
+  });
+  let branches = data.result.records
+    .map((record: any) => {
       let branch: any = {};
-      row.forEach((element: any, i: number) => {
-        branch[headers[i]] = element;
+      keysMap.forEach((entry: string[]) => {
+        branch[entry[0]] = record[entry[1]];
       });
       return branch;
     })
