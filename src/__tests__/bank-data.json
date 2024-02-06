@@ -1,0 +1,71 @@
+{
+  "banks": [
+    {"bankCode": 22, "bankName": "Citibank"},
+    {"bankCode": 18, "bankName": "One  Zero - הבנק הדיגיטלי בע\"\"מ"}
+  ],
+  "branches": [
+    {
+      "bankCode": 22,
+      "bankName": "Citibank",
+      "branchCode": 1,
+      "branchName": "ראשי",
+      "branchAddress": "דרך מנחם בגין 121 מגדל עזריאלי שרונה",
+      "city": "תל אביב -יפו",
+      "zip": 6701203,
+      "phone": "03-6842424",
+      "fax": "03-6842401",
+      "freePhone": "",
+      "accessForDisabled": "לא",
+      "closedDay": "",
+      "type": "רגיל",
+      "openDate": "1999-12-31T00:00:00",
+      "closingDate": null,
+      "mergeBank": null,
+      "mergeBranch": null,
+      "xCoordinate": null,
+      "yCoordinate": null
+    },
+    {
+      "bankCode": 22,
+      "bankName": "Citibank",
+      "branchCode": 2,
+      "branchName": "פנימי",
+      "branchAddress": "דרך מנחם בגין 121  , מגדל עזריאלי שרונה",
+      "city": "תל אביב -יפו",
+      "zip": 6701203,
+      "phone": "03-6842424",
+      "fax": "03-6842401",
+      "freePhone": "",
+      "accessForDisabled": "לא",
+      "closedDay": "",
+      "type": "מחלקה",
+      "openDate": "2002-03-20T00:00:00",
+      "closingDate": null,
+      "mergeBank": null,
+      "mergeBranch": null,
+      "xCoordinate": null,
+      "yCoordinate": null
+    },
+    {
+      "bankCode": 18,
+      "bankName": "One  Zero - הבנק הדיגיטלי בע\"\"מ",
+      "branchCode": 1,
+      "branchName": "תאגידים",
+      "branchAddress": "עמינדב 3 ",
+      "city": "תל אביב -יפו",
+      "zip": 6706703,
+      "phone": "",
+      "fax": "",
+      "freePhone": "",
+      "accessForDisabled": "לא",
+      "closedDay": "",
+      "type": "מחלקה",
+      "openDate": "2021-01-03T00:00:00",
+      "closingDate": null,
+      "mergeBank": null,
+      "mergeBranch": null,
+      "xCoordinate": 32.07,
+      "yCoordinate": 34.79
+    }
+  ]
+}

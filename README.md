@@ -8,22 +8,51 @@ Autocomplete for banks in Israel
 npm i israeli-bank-autocomplete
 ```
 
+## About
+
+This package will help with fetching the data from [data.gov.il](https://data.gov.il/) and searching in the data. The package doesn't contain the data itself. Before calling `fetchNewDataFromDataGovIntoFile` or `fetchNewDataFromDataGov` make sure to read the [terms of use of data.gov.il](https://info.data.gov.il/datagov/rools).
+
+This package uses the following data source [2202bada-4baf-45f5-aa61-8c5bad9646d3](https://data.gov.il/dataset/branches/resource/2202bada-4baf-45f5-aa61-8c5bad9646d3). Please review this page too.
+
 ## Importing
 
 ```javascript
-const {
-  getAutocompleteSuggestions,
-  getAllBanks,
-  getAllBranches,
-} = require("israeli-bank-autocomplete");
+const BankDataSource = require("israeli-bank-autocomplete");
 ```
+
+## Initialization
+
+First get the `bank-data.json` file by running 
+
+```javascript
+const bankDataSource = new BankDataSource();
+await bankDataSource.fetchNewDataFromDataGovIntoFile('<resourceId>', 1600);
+```
+
+This will generate the `bank-data.json`. Make sure to save it, and load the data from it.
+
+```javascript
+import data from './bank-data.json';
+const bankDataSource = new BankDataSource(data);
+```
+
+or 
+
+```javascript
+const bankDataSource = new BankDataSource();
+await bankDataSource.fetchNewDataFromDataGov('<resourceId>', 1600);
+```
+
+When calling `fetchNewDataFromDataGov`. Make sure that you know the limits of calling data.gov.il.
+
+Both function `fetchNewDataFromDataGovIntoFile` and `fetchNewDataFromDataGov` need to get the `resourceId` and a `limit`. The supported resourceId is [`2202bada-4baf-45f5-aa61-8c5bad9646d3`](https://data.gov.il/dataset/branches/resource/2202bada-4baf-45f5-aa61-8c5bad9646d3), and currently a limit of 1600 will return all the results. If you pick a too low limit, you will get a warning.
 
 ## Get autocomplete suggestions
 
 To get bank branches based on a name or a branch code
 
 ```javascript
-let suggestions = getAutocompleteSuggestions("חדר", { bankCode: 12 });
+let suggestions = bankDataSource.getAutocompleteSuggestions("חדר", { bankCode: 12 });
 /*
 suggestions = [
   {
@@ -71,7 +100,7 @@ The function `getAutocompleteSuggestions` takes two parameters
 To get all banks use the following function
 
 ```javascript
-let banks = getAllBanks();
+let banks = bankDataSource.getAllBanks();
 /*
 banks = [
   { bankCode: 4, bankName: 'בנק יהב לעובדי המדינה בע"מ' },
@@ -103,17 +132,3 @@ banks = [
 ## Get all branches
 
 To all the branches use `getAllBranches`
-
-## Update Data From Israel Bank
-
-This function will fetch the data directly from Israel Bank. Run this if you want to make sure your data is up-to-date.
-
-```javascript
-await fetchNewDataFromIsraelBank();
-```
-
-> This function can only be called from NodeJS environments. You can't run this from your browser.
-
-> Running this will fetch data from [https://www.boi.org.il](https://www.boi.org.il). Make sure to read
-> their [terms](https://www.boi.org.il/%D7%AA%D7%A0%D7%90%D7%99-%D7%A9%D7%99%D7%9E%D7%95%D7%A9-%D7%91%D7%90%D7%AA%D7%A8/). This package is not responsible for any action done by
-> calling this function.
