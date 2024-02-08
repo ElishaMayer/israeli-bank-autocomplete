@@ -45,7 +45,7 @@ await bankDataSource.fetchNewDataFromDataGov('<resourceId>', 1600);
 
 When calling `fetchNewDataFromDataGov`, make sure that you know the limits of calling data.gov.il.
 
-Both function `fetchNewDataFromDataGovIntoFile` and `fetchNewDataFromDataGov` need to get the `resourceId` and a `limit`. The supported resourceId is [`2202bada-4baf-45f5-aa61-8c5bad9646d3`](https://data.gov.il/dataset/branches/resource/2202bada-4baf-45f5-aa61-8c5bad9646d3), and currently a limit of 1600 will return all the results. If you pick a too low limit, you will get a warning.
+Both function `fetchNewDataFromDataGovIntoFile` and `fetchNewDataFromDataGov` need to get the `resourceId` and a `limit`. The supported resourceId is [`2202bada-4baf-45f5-aa61-8c5bad9646d3`](https://data.gov.il/dataset/branches/resource/2202bada-4baf-45f5-aa61-8c5bad9646d3), and currently a limit of 1600 will return all the results. If you pick a limit that is too low, you will get a warning.
 
 ## Get autocomplete suggestions
 
@@ -58,7 +58,7 @@ suggestions = [
   {
     bankCode: 12,
     bankName: 'בנק הפועלים בע"מ',
-    branchCode: '620',
+    branchCode: 620,
     branchName: 'חדרה',
     branchAddress: 'הרברט סמואל 85 ',
     city: 'חדרה',
@@ -103,32 +103,31 @@ To get all banks use the following function
 let banks = bankDataSource.getAllBanks();
 /*
 banks = [
-  { bankCode: 4, bankName: 'בנק יהב לעובדי המדינה בע"מ' },
-  { bankCode: 10, bankName: 'בנק לאומי לישראל בע"מ' },
-  { bankCode: 11, bankName: 'בנק דיסקונט לישראל בע"מ' },
-  { bankCode: 12, bankName: 'בנק הפועלים בע"מ' },
-  { bankCode: 13, bankName: '13001-בנק אגוד לישראל בע"מ' },
-  { bankCode: 14, bankName: 'בנק אוצר החייל בע"מ' },
-  { bankCode: 17, bankName: 'בנק מרכנתיל דיסקונט בע"מ' },
-  { bankCode: 18, bankName: "הבנק הדיגיטלי הראשון בע\"מ" },
-  { bankCode: 20, bankName: 'בנק מזרחי טפחות בע"מ' },
-  { bankCode: 22, bankName: 'Citibank N.A' },
-  { bankCode: 23, bankName: "אייצ' אס בי סי בנק" },
-  { bankCode: 26, bankName: 'יובנק בע"מ' },
-  { bankCode: 31, bankName: 'בנק הבינלאומי הראשון לישראל בע"מ' },
-  { bankCode: 39, bankName: 'SBI State Bank of India' },
-  { bankCode: 46, bankName: 'בנק מסד בע"מ' },
-  { bankCode: 50, bankName: 'מרכז סליקה בנקאי בע"מ' },
-  { bankCode: 52, bankName: 'בנק פועלי אגודת ישראל בע"מ' },
-  { bankCode: 54, bankName: 'בנק ירושלים בע"מ' },
-  { bankCode: 59, bankName: 'שירותי בנק אוטומטיים' },
-  { bankCode: 68, bankName: 'מוניציפל בנק בע"מ' },
-  { bankCode: 99, bankName: 'בנק ישראל' },
-  { bankCode: 9, bankName: 'בנק הדואר' }
+    { bankCode: 22, bankName: 'Citibank'},
+    { bankCode: 23, bankName: 'HSBC'},
+    { bankCode: 18, bankName: 'One  Zero - הבנק הדיגיטלי בע"מ'},
+    { bankCode: 39, bankName: 'SBI State Bank of India'},
+    { bankCode: 13, bankName: 'בנק אגוד לישראל בע"מ'},
+    { bankCode: 14, bankName: 'בנק אוצר החייל בע"מ'},
+    { bankCode: 11, bankName: 'בנק דיסקונט לישראל בע"מ'},
+    { bankCode: 31, bankName: 'בנק הבינלאומי הראשון לישראל בע"מ'},
+    { bankCode: 12, bankName: 'בנק הפועלים בע"מ'},
+    { bankCode: 4, bankName: 'בנק יהב לעובדי המדינה בע"מ'},
+    { bankCode: 54, bankName: 'בנק ירושלים בע"מ'},
+    { bankCode: 99, bankName: 'בנק ישראל'},
+    { bankCode: 10, bankName: 'בנק לאומי לישראל בע"מ'},
+    { bankCode: 20, bankName: 'בנק מזרחי טפחות בע"מ'},
+    { bankCode: 46, bankName: 'בנק מסד בע"מ'},
+    { bankCode: 17, bankName: 'בנק מרכנתיל דיסקונט בע"מ'},
+    { bankCode: 52, bankName: 'בנק פועלי אגודת ישראל בע"מ'},
+    { bankCode: 26, bankName: 'יובנק בע"מ'},
+    { bankCode: 50, bankName: 'מרכז סליקה בנקאי בע"מ'},
+    { bankCode: 59, bankName: 'שירותי בנק אוטומטיים'},
+    { bankCode: 9, bankName: 'בנק הדואר'}
 ]
 */
 ```
 
 ## Get all branches
 
-To all the branches use `getAllBranches`
+To all the branches use `bankDataSource.getAllBranches()`.
