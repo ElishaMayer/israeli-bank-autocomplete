@@ -81,7 +81,7 @@ export async function convertBranchesDataFromGovData(
   branches.push({
     bankCode: 9,
     bankName: "בנק הדואר",
-    branchCode: "1",
+    branchCode: 1,
     branchName: "",
     branchAddress: "",
     city: "",
