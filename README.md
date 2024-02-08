@@ -10,7 +10,7 @@ npm i israeli-bank-autocomplete
 
 ## About
 
-This package will help with fetching the data from [data.gov.il](https://data.gov.il/) and searching in the data. The package doesn't contain the data itself. Before calling `fetchNewDataFromDataGovIntoFile` or `fetchNewDataFromDataGov` make sure to read the [terms of use of data.gov.il](https://info.data.gov.il/datagov/rools).
+This package will help with fetching the data from [data.gov.il](https://data.gov.il/) and searching in the data. The package doesn't contain the data itself. Before calling `fetchNewDataFromDataGov` make sure to read the [terms of use of data.gov.il](https://info.data.gov.il/datagov/rools).
 
 This package uses the following data source [2202bada-4baf-45f5-aa61-8c5bad9646d3](https://data.gov.il/dataset/branches/resource/2202bada-4baf-45f5-aa61-8c5bad9646d3). Please review this page too.
 
@@ -26,7 +26,8 @@ First get the `bank-data.json` file by running
 
 ```javascript
 const bankDataSource = new BankDataSource();
-await bankDataSource.fetchNewDataFromDataGovIntoFile('<resourceId>', 1600);
+await bankDataSource.fetchNewDataFromDataGov('<resourceId>', 1600);
+fs.writeFileSync('bank-data.json', JSON.stringify(bankDataSource.exportBankData()));
 ```
 
 This will generate the `bank-data.json`. Make sure to save it, and load the data from it.
@@ -36,7 +37,7 @@ import data from './bank-data.json';
 const bankDataSource = new BankDataSource(data);
 ```
 
-or 
+or just run `fetchNewDataFromDataGov` every time to create a new instance:
 
 ```javascript
 const bankDataSource = new BankDataSource();
@@ -45,7 +46,7 @@ await bankDataSource.fetchNewDataFromDataGov('<resourceId>', 1600);
 
 When calling `fetchNewDataFromDataGov`, make sure that you know the limits of calling data.gov.il.
 
-Both function `fetchNewDataFromDataGovIntoFile` and `fetchNewDataFromDataGov` need to get the `resourceId` and a `limit`. The supported resourceId is [`2202bada-4baf-45f5-aa61-8c5bad9646d3`](https://data.gov.il/dataset/branches/resource/2202bada-4baf-45f5-aa61-8c5bad9646d3), and currently a limit of 1600 will return all the results. If you pick a limit that is too low, you will get a warning.
+The function `fetchNewDataFromDataGov` needs to get the `resourceId` and a `limit`. The supported resourceId is [`2202bada-4baf-45f5-aa61-8c5bad9646d3`](https://data.gov.il/dataset/branches/resource/2202bada-4baf-45f5-aa61-8c5bad9646d3), and currently a limit of 1600 will return all the results. If you pick a limit that is too low, you will get a warning.
 
 ## Get autocomplete suggestions
 
@@ -130,4 +131,4 @@ banks = [
 
 ## Get all branches
 
-To all the branches use `bankDataSource.getAllBranches()`.
+To get all the branches use `bankDataSource.getAllBranches()`.
