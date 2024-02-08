@@ -53,6 +53,9 @@ export async function convertBranchesDataFromGovData(
       keysMap.forEach((entry: string[]) => {
         branch[entry[0]] = record[entry[1]];
       });
+
+      branch.bankName = branch.bankName.replace(/""/g, '"');
+
       return branch;
     })
     .filter((branch: any) => branch.bankCode);
