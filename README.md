@@ -26,7 +26,8 @@ First get the `bank-data.json` file by running
 
 ```javascript
 const bankDataSource = new BankDataSource();
-await bankDataSource.fetchNewDataFromDataGovIntoFile('<resourceId>', 1600);
+await bankDataSource.fetchNewDataFromDataGov('<resourceId>', 1600);
+fs.writeFileSync('bank-data.json', JSON.stringify(bankDataSource.exportBankData()));
 ```
 
 This will generate the `bank-data.json`. Make sure to save it, and load the data from it.
@@ -36,7 +37,7 @@ import data from './bank-data.json';
 const bankDataSource = new BankDataSource(data);
 ```
 
-or 
+or just run `fetchNewDataFromDataGov` every time to create a new instance:
 
 ```javascript
 const bankDataSource = new BankDataSource();
@@ -130,4 +131,4 @@ banks = [
 
 ## Get all branches
 
-To all the branches use `bankDataSource.getAllBranches()`.
+To get all the branches use `bankDataSource.getAllBranches()`.

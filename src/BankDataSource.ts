@@ -33,16 +33,17 @@ class BankDataSource {
     }
 
     /**
-    * Fetch new data from Israel Bank
+    * Export bank data
     */
-    async fetchNewDataFromDataGovIntoFile(resourceId: string, limit: number) {
-        if (typeof window !== "undefined") {
-            throw new Error("fetchNewDataFromDataGovIntoFile function is not available in the browser");
+    exportBankData() {
+        if (this.banks.length === 0 || this.branches.length === 0) {
+            throw new Error("No data to export. Please call fetchNewDataFromDataGov function first.");
         }
-        const data = await fetchFromDataGov(resourceId, limit);
-        const { banks, branches } = await convertBranchesDataFromGovData(data);
-        const fs = require('fs');
-        fs.writeFileSync('bank-data.json', JSON.stringify({ banks, branches }));
+
+        return {
+            banks: this.banks,
+            branches: this.branches,
+        }
     }
 
 
@@ -102,7 +103,7 @@ class BankDataSource {
             branches = this.getAllBankBranches(options.bankCode);
         } else {
             branches = this.getAllBranches();
-        }        
+        }
 
         if (options && options.inputType === "BRANCH_NAME")
             return branches.filter((branch: Branch) =>
